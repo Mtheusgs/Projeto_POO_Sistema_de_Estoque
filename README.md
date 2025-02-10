@@ -1,1 +1,1 @@
-# Sistema de Estoque
+# Sistema de Estoque - POO
