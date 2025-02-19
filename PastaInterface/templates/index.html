@@ -5,28 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Interação com Flask</title>
+    <script>
+        function toggleForm() {
+            const loginForm = document.getElementById("login-form");
+            const registerForm = document.getElementById("register-form");
+            loginForm.classList.toggle("hidden");
+            registerForm.classList.toggle("hidden");
+        }
+    </script>
 </head>
 <body class="bg-white w-full h-full flex flex-row">  
+    <!-- Seção do formulário -->
     <div class="bg-blue-500 w-1/2 h-screen flex flex-col items-center justify-center min-h-screen"> 
-        <h1 class="text-3xl font-bold text-white mb-5">📦 Sistema de Estoque - GPTecos</h1>
+        <h1 class="text-3xl font-bold text-white mb-5">📦 Sistema de Estoque</h1>
 
-        <form method="POST" class="bg-white p-5 rounded shadow-lg flex flex-col gap-5 w-[70%]"> 
+        <!-- Formulário de Login -->
+        <form id="login-form" method="POST" class="bg-white p-5 rounded shadow-lg flex flex-col gap-5 w-[70%]"> 
             <h1 class="text-3xl font-bold text-blue-400 mb-5">Login</h1>
+            {% if mensagem %}
+                <p class="text-red-500 text-sm">{{ mensagem }}</p>
+            {% endif %} 
+                <!-- Exibindo as mensagens de flash -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                     <ul>
+                        {% for message in messages %}
+                            <li class="text-red-500">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
             <input type="text" name="usuario" class="border p-2 rounded w-full" placeholder="Usuário" required> 
             <input type="password" name="senha" class="border p-2 rounded w-full" placeholder="Senha" required> 
+            <button type="submit" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Entrar</button>
+            <p class="text-black text-sm">Ainda não tem cadastro?</p> 
+            <button type="button" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="toggleForm()">Registrar-se</button>
+        </form>  
 
-            <button type="submit" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Enviar
-            </button>
-        </form>
+        <!-- Formulário de Registro -->
+        <form id="register-form" method="POST" action="/register" class="bg-white p-5 rounded shadow-lg flex flex-col gap-5 w-[70%] hidden"> 
+            <h1 class="text-3xl font-bold text-blue-400 mb-5">Registrar-se</h1> 
+            <input type="text" name="iden" class="border p-2 rounded w-full" placeholder="Id" required>
+            <input type="text" name="nome" class="border p-2 rounded w-full" placeholder="Nome Completo" required>
+            <input type="text" name="cargo" class="border p-2 rounded w-full" placeholder="Cargo" required>
+            <input type="text" name="usuario" class="border p-2 rounded w-full" placeholder="Usuário" required>
+            <input type="password" name="senha" class="border p-2 rounded w-full" placeholder="Senha" required> 
+            <button type="submit" class="mt-3 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Cadastrar</button>   
+
+            <p class="text-black text-sm">Já tem uma conta?</p> 
+            <button type="button" class="mt-3 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="toggleForm()">Voltar ao Login</button>
+        </form>  
     </div> 
-
-    <!-- Segunda parte com fundo vermelho -->
-    <div class="bg-gray-600 w-1/2 h-screen flex flex-col items-center justify-center min-h-screen"> 
-        <img src="templates/img/pngtree-inventory-control-vector-warehouse-industry-png-image_6428755.png" alt="Imagem do Controle de Estoque">
-    </div>
     
+    <!-- Seção da imagem -->
+    <div class="bg-white w-1/2 h-screen flex flex-col items-center justify-center min-h-screen"> 
+        <img class="h-4/5 w-3/4" src="{{ url_for('static', filename='img/3.avif') }}" alt="Imagem de teste">
+    </div>
 </body>
-
-
 </html>
