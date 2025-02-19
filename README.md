@@ -34,3 +34,19 @@ cd sistema-estoque
 pip install -r requirements.txt
 pip instal flask
 python app.py
+
+
+
+sistema-estoque/
+│
+├── app.py                 # Arquivo principal da aplicação Flask
+├── requirements.txt       # Dependências do projeto
+├── static/                # Arquivos estáticos (CSS, JS, imagens)
+│   └── styles.css         # Estilos personalizados
+├── templates/             # Arquivos HTML da aplicação
+│   ├── index.html         # Página principal (listagem de produtos)
+│   ├── add_product.html   # Página de cadastro de produtos
+│   └── edit_product.html  # Página de edição de produtos
+└── models/                # Lógica de classes e manipulação de dados
+    └── product.py         # Classe que representa um produto
+
