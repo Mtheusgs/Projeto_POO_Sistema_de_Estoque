@@ -1,7 +1,7 @@
-class User():
+class User:
     user_list = []
 
-    def __init__(self, UserId: str, UserName: str, Cargo: str, Senha: str, Login: str):
+    def __init__(self, UserId: str, UserName: str, Cargo: str, Login: str, Senha: str):
         self.UserId = UserId
         self.UserName = UserName
         self.Cargo = Cargo
@@ -19,7 +19,7 @@ class User():
     def login(cls, login, senha):
         """ Realiza o login do usuário """
         for user in cls.user_list:
-            if user.Login == login and user.Senha == senha:
+            if user.Login == login and user.Senha == senha: 
                 print(f"Usuário {user.UserName} logado com sucesso!")
                 return  # Sai da função após um login bem-sucedido
         
@@ -96,10 +96,6 @@ def mostrarAtributo(escolha):
     print(getattr(user, switcher.get(atributo)))
        
 
-if __name__ == "__main__": 
-    registrar() 
-    registrar()
-    mostrarAtributo(1)
 
 
 
