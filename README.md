@@ -30,3 +30,7 @@ Este projeto consiste em um sistema de controle de estoque desenvolvido para fin
 
 ```bash
 git clone https://github.com/Projeto_POO_Sistema_de_Estoque.git
+cd sistema-estoque
+pip install -r requirements.txt
+pip instal flask
+python app.py
